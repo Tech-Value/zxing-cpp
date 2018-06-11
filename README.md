@@ -53,7 +53,9 @@ To profile the code (very useful to optimize the code):
 # Emscripten port
 To create the zxing.js to use in a web project run:
 
-  1. `mkdir build`
-  2. `cd build`
-  3. `cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=<path>/emscript/emsdk/emscripten/1.38.4/cmake/Modules/Platform/Emscripten.cmake -DEMSCRIPTEN_GENERATE_BITCODE_STATIC_LIBRARIES=ON ..`
-  4. `<path>/emscript/emsdk/emscripten/1.38.4/emmake make -j4`
+  1. Install emscripten following [this link](http://kripken.github.io/emscripten-site/docs/getting_started/downloads.html)
+  2. `mkdir build`
+  3. `cd build`
+  4. `cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=<path_to_emscript>/emsdk/emscripten/1.38.4/cmake/Modules/Platform/Emscripten.cmake -DEMSCRIPTEN_GENERATE_BITCODE_STATIC_LIBRARIES=ON ..`
+  5. `<path_to_emscript>/emsdk/emscripten/1.38.4/emmake make -j4`
+  6. Copy `zxing.js` file in your project.
