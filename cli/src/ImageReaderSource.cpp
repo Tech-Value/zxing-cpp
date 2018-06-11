@@ -87,6 +87,15 @@ Ref<LuminanceSource> ImageReaderSource::create(string const& filename) {
 }
 
 zxing::ArrayRef<char> ImageReaderSource::getRow(int y, zxing::ArrayRef<char> row) const {
+  const char* pixelRow = &image[0] + y * getWidth();
+  if (!row) {
+    row = zxing::ArrayRef<char>(getWidth());
+  }
+  for (int x = 0; x < getWidth(); x++) {
+    row[x] = pixelRow[x];
+  }
+  return row;
+  /*
   const char* pixelRow = &image[0] + y * getWidth() * 4;
   if (!row) {
     row = zxing::ArrayRef<char>(getWidth());
@@ -95,10 +104,13 @@ zxing::ArrayRef<char> ImageReaderSource::getRow(int y, zxing::ArrayRef<char> row
     row[x] = convertPixel(pixelRow + (x * 4));
   }
   return row;
+  */
 }
 
 /** This is a more efficient implementation. */
 zxing::ArrayRef<char> ImageReaderSource::getMatrix() const {
+  return image;
+  /*
   const char* p = &image[0];
   zxing::ArrayRef<char> matrix(getWidth() * getHeight());
   char* m = &matrix[0];
@@ -110,4 +122,5 @@ zxing::ArrayRef<char> ImageReaderSource::getMatrix() const {
     }
   }
   return matrix;
+  */
 }

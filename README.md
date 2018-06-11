@@ -49,3 +49,11 @@ To profile the code (very useful to optimize the code):
   1. Install Valgrind
   2. Run `valgrind --tool=callgrind build/zxing - path/to/test/data/*.jpg > report.html`
   3. Analyze output using KCachegrind
+
+# Emscripten port
+To create the zxing.js to use in a web project run:
+
+  1. `mkdir build`
+  2. `cd build`
+  3. `cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" -DCMAKE_TOOLCHAIN_FILE=<path>/emscript/emsdk/emscripten/1.38.4/cmake/Modules/Platform/Emscripten.cmake -DEMSCRIPTEN_GENERATE_BITCODE_STATIC_LIBRARIES=ON ..`
+  4. `<path>/emscript/emsdk/emscripten/1.38.4/emmake make -j4`
